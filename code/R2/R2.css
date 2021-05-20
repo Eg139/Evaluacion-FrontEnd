@@ -1,0 +1,31 @@
+@media (max-width: 590px) {
+    body{
+        font-size: 0.8rem;
+        background-color: rgb(155, 243, 243);
+    }
+}
+@media (min-width: 600px) {
+    body{
+        font-size: 1rem;
+        background-color: rgb(127, 219, 147);
+    }
+}
+@media (min-width: 1000px) {
+    body{
+        font-size: 1.5rem;
+        background-color: rgb(142, 228, 164);
+    }
+}
+@media (min-width: 1100px) {
+    body{
+        font-size: 2rem;
+        background-color: rgb(147, 221, 140);
+    }
+}
+
+@media (min-width: 1900px) {
+    body{
+        font-size: 3.5rem;
+        background-color: rgb(199, 252, 150);
+    }
+}
