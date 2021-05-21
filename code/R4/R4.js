@@ -1,53 +1,48 @@
+var arrayPokemon = [];
 document.addEventListener('DOMContentLoaded', ()=> {
 
-    for (let index = 0; index < 6; index++) {
-        const random = getRandomInt(1,151)
-        fetchData(random)
-        
-    }
-
+for (let index = 0; index < 10; index++) {
+let random = arrayPokemon.push(getRandomInt(1,151))
+fetchData(arrayPokemon[index]) 
+}
 })
 
 const getRandomInt = (min,max) => {
-    return Math.floor(Math.random()*(max -min))+min;
+return Math.floor(Math.random()*(max -min))+min;
 }
-
-
 const fetchData = async (id)=>{
-    try{
-        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-        const data = await res.json()
+try{
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+    const data = await res.json()
 
-        console.log(data)
-        const pokemon = {
-            img: data.sprites.other.dream_world.front_default,
-            nombre: data.name,
-            hp: data.stats[0].base_stat,
-            index: data.id,
-            ataque:data.stats[1].base_stat,
-            defensa:data.stats[2].base_stat,
-            especial:data.stats[3].base_stat,
-            tipo:data.types[0].type.name
-        }
-        pintarTabla(pokemon)
-    }catch(error){
-        console.log(error);
+    console.log(data)
+    const pokemon = {
+        img: data.sprites.other.dream_world.front_default,
+        nombre: data.name,
+        hp: data.stats[0].base_stat,
+        index: data.id,
+        ataque:data.stats[1].base_stat,
+        defensa:data.stats[2].base_stat,
+        especial:data.stats[3].base_stat,
+        tipo:data.types[0].type.name
     }
+    pintarTabla(pokemon)
+}catch(error){
+    console.log(error);
+}
 }
 
-const pintarTabla = (pokemon) => {
-    const flex = document.querySelector('.flex')
-    const template = document.querySelector('#table').content
-    const clone = template.cloneNode(true)
-    const fragment = document.createDocumentFragment()
+var contenido = document.querySelector('#contenido')
 
-    clone.querySelector('.index').textContent = pokemon.index
-    clone.querySelector('.sprite').setAttribute('src', pokemon.img)
-    clone.querySelector('.name').textContent =  pokemon.nombre
-    clone.querySelector('.atack').textContent = pokemon.ataque
-    clone.querySelector('.tipo').textContent = pokemon.tipo
-    clone.querySelector('.hp').textContent = pokemon.hp
-
-    fragment.appendChild(clone)
-    flex.appendChild(fragment)
-}
+function pintarTabla(datos){
+        contenido.innerHTML += `
+        <tr>
+              <th scope="row" class="index">${datos.index}</th>
+              <td><img class="sprite" src="${datos.img}" alt="pokemon"></td>
+              <td class="name">${datos.nombre}</td>
+              <td class="tipo">${datos.tipo}</td>
+              <td class="atack">${datos.ataque}</td>  
+              <td class="hp">${datos.hp}</td>
+            </tr>
+            `
+    }
